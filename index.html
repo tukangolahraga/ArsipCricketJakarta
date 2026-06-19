@@ -1015,27 +1015,51 @@
                 return;
             }
 
-            dbAtlet.forEach(atlet => {
-                const performa = dbPerforma.find(p => p.idAtlet === atlet.id) || null;
-                let statusEval = `<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-slate-100 text-slate-600">Belum Ada Tes</span>`;
-                if (performa) {
-                    if (performa.tgltes_akhir && performa.vo2_akhir) statusEval = `<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-emerald-100 text-emerald-800 border border-emerald-200">Lengkap (Awal & Akhir)</span>`;
-                    else statusEval = `<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-amber-100 text-amber-800 border border-amber-200">Hanya Tes Awal</span>`;
+            // MENGELOMPOKKAN DATA BERDASARKAN KLUB DAN KOTA MENGGUNAKAN REDUCE
+            const groupedData = dbAtlet.reduce((acc, atlet) => {
+                const groupKey = `${atlet.klub} - ${atlet.kabkota}`;
+                if (!acc[groupKey]) {
+                    acc[groupKey] = [];
                 }
-                
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td class="font-mono text-xs font-bold text-slate-500">${atlet.id}</td>
-                    <td class="font-bold text-slate-900">${atlet.nama}</td>
-                    <td>${atlet.klub}</td>
-                    <td>${atlet.kabkota}</td>
-                    <td>${statusEval}</td>
-                    <td class="text-right">
-                        <button onclick="bukaProfil('${atlet.id}')" class="text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-brand-600 hover:border-brand-300 px-3 py-1.5 rounded-lg transition-all shadow-sm">Buka Detail</button>
+                acc[groupKey].push(atlet);
+                return acc;
+            }, {});
+
+            // RENDER DATA YANG SUDAH DIKELOMPOKKAN
+            for (const groupKey in groupedData) {
+                // Tambahkan Baris Header/Pemisah Kelompok
+                const trGroup = document.createElement('tr');
+                trGroup.className = "bg-slate-100 border-y border-slate-200";
+                trGroup.innerHTML = `
+                    <td colspan="6" class="px-4 py-3 font-bold text-slate-800 text-sm tracking-wide">
+                        <span class="mr-2">🏢</span> ${groupKey} <span class="ml-2 text-xs font-medium bg-slate-200 text-slate-600 px-2 py-0.5 rounded-full">${groupedData[groupKey].length} Atlet</span>
                     </td>
                 `;
-                tbody.appendChild(tr);
-            });
+                tbody.appendChild(trGroup);
+
+                // Render anggota kelompok
+                groupedData[groupKey].forEach(atlet => {
+                    const performa = dbPerforma.find(p => p.idAtlet === atlet.id) || null;
+                    let statusEval = `<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-slate-100 text-slate-600">Belum Ada Tes</span>`;
+                    if (performa) {
+                        if (performa.tgltes_akhir && performa.vo2_akhir) statusEval = `<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-emerald-100 text-emerald-800 border border-emerald-200">Lengkap (Awal & Akhir)</span>`;
+                        else statusEval = `<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-amber-100 text-amber-800 border border-amber-200">Hanya Tes Awal</span>`;
+                    }
+                    
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td class="font-mono text-xs font-bold text-slate-500 pl-6">${atlet.id}</td>
+                        <td class="font-bold text-slate-900">${atlet.nama}</td>
+                        <td><span class="text-slate-400 italic text-xs">Termasuk dalam grup atas</span></td>
+                        <td><span class="text-slate-400 italic text-xs">Termasuk dalam grup atas</span></td>
+                        <td>${statusEval}</td>
+                        <td class="text-right">
+                            <button onclick="bukaProfil('${atlet.id}')" class="text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-brand-600 hover:border-brand-300 px-3 py-1.5 rounded-lg transition-all shadow-sm">Buka Detail</button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
         }
 
         function getKalkulasi(akhir, awal, pembagi) {
