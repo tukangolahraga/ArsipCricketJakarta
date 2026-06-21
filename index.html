@@ -675,19 +675,17 @@
         function getValSafe(id) { const el = document.getElementById(id); return el ? el.value : ''; }
         function setValSafe(id, val) { const el = document.getElementById(id); if (el) el.value = val; }
 
-        // PERBAIKAN 1: Menangani Link GDrive agar dirender langsung di Img Tag
+        // PERBAIKAN: Gunakan Endpoint lh3 yang lebih agresif & bebas blokir CORB/CORS di tag img
         function dapatkanUrlFotoValid(urlAsli) {
             if (!urlAsli) return '';
             let url = urlAsli.trim();
             if (url.startsWith('data:image')) return url;
             
-            // Regex diperkuat untuk menangani berbagai bentuk link Google Drive
             const driveRegex = /(?:drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?id=)|docs\.google\.com\/(?:uc\?id=|file\/d\/)|id=)([a-zA-Z0-9_-]{25,})/;
             const match = url.match(driveRegex);
             
             if (match && match[1]) {
-                // Endpoint terbaik saat ini untuk menampilkan gambar GDrive lintas platform/perangkat
-                return `https://drive.google.com/uc?export=view&id=${match[1]}`;
+                return `https://lh3.googleusercontent.com/d/${match[1]}`;
             }
             return url;
         }
@@ -1140,7 +1138,7 @@
             const cAkhir = getSafe('control_akhir', 'controlakhir'); const cAwal = getSafe('control_awal', 'controlawal');
             const aAkhir = getSafe('akurat_akhir', 'akuratakhir'); const aAwal = getSafe('akurat_awal', 'akuratawal');
             const tAkhir = getSafe('tangkap_akhir', 'tangkapakhir'); const tAwal = getSafe('tangkap_awal', 'tangkapawal');
-            const hAkhir = getSafe('hadang_akhir', 'hadangakhir'); const hAwal = getSafe('hadang_awal', 'hadangawal');
+            const hAkhir = getSafe('hadang_akhir', 'hadangakhir'); const hAwal = getSafe('hadang_akhir', 'hadangawal');
             const wkcAkhir = getSafe('wk_col_akhir', 'wkcolakhir'); const wkcAwal = getSafe('wk_col_awal', 'wkcolawal');
             const wksAkhir = getSafe('wk_stump_akhir', 'wkstumpakhir'); const wksAwal = getSafe('wk_stump_awal', 'wkstumpawal');
 
@@ -1192,11 +1190,11 @@
 
             // A. Batting Order
             if (isBatsman && dom.cp >= 85 && (dom.sr >= 110 && dom.sr <= 130) && run2 <= 6.39 && run2 > 0) {
-                hasil.push(`<li class="mb-1"><span class="font-semibold text-slate-700">Batting:</span> <span class="font-medium text-blue-700">Nomor 1 & 2 (Opening Batsmen)</span> <br><span class="text-[10px] text-slate-500">Mampu mencuri run cepat (Run2 \le 6.39s) & kontrol \ge 85%.</span></li>`);
+                hasil.push(`<li class="mb-1"><span class="font-semibold text-slate-700">Batting:</span> <span class="font-medium text-blue-700">Nomor 1 & 2 (Opening Batsmen)</span> <br><span class="text-[10px] text-slate-500">Mampu mencuri run cepat (Run2 \\le 6.39s) & kontrol \\ge 85%.</span></li>`);
             } else if (dom.nama === "Batsman" && dom.cp >= 85 && dom.sr >= 120 && vo2 >= 52.0) {
-                hasil.push(`<li class="mb-1"><span class="font-semibold text-slate-700">Batting:</span> <span class="font-medium text-blue-700">Nomor 3 & 4 (Top Order / Jantung Tim)</span> <br><span class="text-[10px] text-slate-500">VO2 Max \ge 52.0 mendukung long innings.</span></li>`);
+                hasil.push(`<li class="mb-1"><span class="font-semibold text-slate-700">Batting:</span> <span class="font-medium text-blue-700">Nomor 3 & 4 (Top Order / Jantung Tim)</span> <br><span class="text-[10px] text-slate-500">VO2 Max \\ge 52.0 mendukung long innings.</span></li>`);
             } else if (isBatsman && dom.sr >= 140) {
-                hasil.push(`<li class="mb-1"><span class="font-semibold text-slate-700">Batting:</span> <span class="font-medium text-blue-700">Nomor 5, 6 & 7 (Middle Order / Finisher)</span> <br><span class="text-[10px] text-slate-500">SR Tinggi (\ge 140) untuk power hitting menit akhir.</span></li>`);
+                hasil.push(`<li class="mb-1"><span class="font-semibold text-slate-700">Batting:</span> <span class="font-medium text-blue-700">Nomor 5, 6 & 7 (Middle Order / Finisher)</span> <br><span class="text-[10px] text-slate-500">SR Tinggi (\\ge 140) untuk power hitting menit akhir.</span></li>`);
             } else if (dom.nama === "Bowler" && dom.cp < 60) {
                 hasil.push(`<li class="mb-1"><span class="font-semibold text-slate-700">Batting:</span> <span class="font-medium text-blue-700">Nomor 8 - 11 (Tailenders)</span></li>`);
             } else if (dom.cp > 0) {
@@ -1205,9 +1203,9 @@
 
             // B. Bowling Order
             if (isBowler && dom.ba >= 75 && vo2 >= 58.0) {
-                hasil.push(`<li class="mb-1"><span class="font-semibold text-slate-700">Bowling:</span> <span class="font-medium text-blue-700">Opening Bowler (Over 1 - 5)</span> <br><span class="text-[10px] text-slate-500">Akurasi \ge 75% didukung Elite VO2 Max (\ge 58.0).</span></li>`);
+                hasil.push(`<li class="mb-1"><span class="font-semibold text-slate-700">Bowling:</span> <span class="font-medium text-blue-700">Opening Bowler (Over 1 - 5)</span> <br><span class="text-[10px] text-slate-500">Akurasi \\ge 75% didukung Elite VO2 Max (\\ge 58.0).</span></li>`);
                 if (dom.fe >= 75) {
-                    hasil.push(`<li class="mb-1"><span class="font-semibold text-slate-700">Bowling:</span> <span class="font-medium text-blue-700">Death Bowler (Over 16 - 20)</span> <br><span class="text-[10px] text-slate-500">Fielding \ge 75% + Elite VO2 Max untuk ketenangan akhir.</span></li>`);
+                    hasil.push(`<li class="mb-1"><span class="font-semibold text-slate-700">Bowling:</span> <span class="font-medium text-blue-700">Death Bowler (Over 16 - 20)</span> <br><span class="text-[10px] text-slate-500">Fielding \\ge 75% + Elite VO2 Max untuk ketenangan akhir.</span></li>`);
                 }
             } else if (dom.nama === "Bowler" && dom.ba >= 60 && dom.ba < 75) {
                 hasil.push(`<li class="mb-1"><span class="font-semibold text-slate-700">Bowling:</span> <span class="font-medium text-blue-700">Middle Overs Bowler (Over 6 - 15)</span></li>`);
@@ -1233,7 +1231,7 @@
             return { list: hasil, alert: alertMsg };
         }
 
-        // --- SISTEM MODAL PROFIL ---
+        // --- SISTEM MODAL PROFIL (PERBAIKAN FOTO TAMPIL) ---
         function bukaProfil(id) {
             atletAktifId = id; 
             const atlet = dbAtlet.find(a => a.id === id);
@@ -1249,27 +1247,31 @@
             const imgEl = document.getElementById('modal-foto');
             const noImgEl = document.getElementById('modal-no-foto');
             
+            // Bersihkan sisa tampilan sebelumnya
             imgEl.classList.add('hidden');
             imgEl.onload = null; imgEl.onerror = null; imgEl.src = ''; 
             
             noImgEl.classList.remove('hidden');
             noImgEl.innerText = "Memuat foto...";
 
-            // Fallback key untuk mengantisipasi perubahan header di Sheets (Foto, FOTO, foto)
-            const urlFotoBersih = dapatkanUrlFotoValid(atlet.foto || atlet.Foto || atlet.FOTO);
+            // Menangkap foto dari berbagai kemungkinan nama kolom header di Spreadsheet
+            const urlFotoBersih = dapatkanUrlFotoValid(atlet.foto || atlet.Foto || atlet.FOTO || atlet.url_foto);
 
-            if (urlFotoBersih && urlFotoBersih.length > 20) { 
-                imgEl.onload = function() {
-                    imgEl.classList.remove('hidden'); noImgEl.classList.add('hidden');
-                };
+            // Logika render foto yang sangat agresif agar tidak nge-bug di hidden
+            if (urlFotoBersih && urlFotoBersih.length > 10) { 
+                imgEl.src = urlFotoBersih;
+                imgEl.classList.remove('hidden'); 
+                noImgEl.classList.add('hidden');
+                
                 imgEl.onerror = function() {
-                    imgEl.classList.add('hidden'); noImgEl.classList.remove('hidden');
-                    noImgEl.innerText = "Foto tidak dapat diakses"; imgEl.src = ''; 
+                    imgEl.classList.add('hidden'); 
+                    noImgEl.classList.remove('hidden');
+                    noImgEl.innerText = "Gagal memuat foto dari GDrive"; 
                 };
-                try { imgEl.src = urlFotoBersih; } catch (err) { imgEl.onerror(); }
             } else {
-                imgEl.classList.add('hidden'); noImgEl.classList.remove('hidden');
-                noImgEl.innerText = "Tidak ada foto";
+                imgEl.classList.add('hidden'); 
+                noImgEl.classList.remove('hidden');
+                noImgEl.innerText = "Tidak ada foto tersimpan";
             }
 
             const perfContainer = document.getElementById('modal-performa-container');
@@ -1540,7 +1542,7 @@
             const cwk = (c, s) => (c || s) ? ((((parseFloat(c)||0) + (parseFloat(s)||0))/20)*100).toFixed(1)+'%' : '-';
             const srF = (val) => val ? 'SR '+((parseFloat(val)/24)*100).toFixed(1) : '-';
             
-            const urlFotoPDF = dapatkanUrlFotoValid(atlet.foto);
+            const urlFotoPDF = dapatkanUrlFotoValid(atlet.foto || atlet.Foto || atlet.FOTO || atlet.url_foto);
 
             const rubricHtml = `
                 <div style="margin-top: 20px; page-break-inside: auto;">
