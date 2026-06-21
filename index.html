@@ -328,6 +328,11 @@
                 </div>
             </div>
 
+            <!-- Pesan Informasi Pengisian Berbeda Waktu -->
+            <div id="info-pengisian" class="hidden mb-6 bg-blue-50 border border-blue-200 text-blue-800 px-4 py-3 rounded-xl text-sm">
+                <span class="font-bold">Info:</span> Data Evaluasi Awal sudah tersimpan. Anda dapat langsung melengkapi Evaluasi Akhir. Data sebelumnya tidak akan terhapus.
+            </div>
+
             <form id="form-performa" onsubmit="simpanPerforma(event)">
                 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -339,7 +344,7 @@
                         
                         <div class="flex flex-col mb-6">
                             <label class="text-xs font-bold text-slate-600 mb-1.5">Tanggal Evaluasi Awal</label>
-                            <input type="date" id="tgltes_awal" required class="vintage-input">
+                            <input type="date" id="tgltes_awal" class="vintage-input">
                         </div>
 
                         <div class="bg-slate-50 rounded-xl p-4 mb-6 border border-slate-100">
@@ -347,15 +352,15 @@
                             <div class="grid grid-cols-3 gap-4">
                                 <div class="flex flex-col">
                                     <label class="text-[10px] sm:text-[11px] font-bold text-slate-600 mb-1">VO2 Max</label>
-                                    <input type="number" step="0.1" id="vo2_awal" required class="vintage-input bg-white px-2" placeholder="45.5">
+                                    <input type="number" step="0.1" id="vo2_awal" class="vintage-input bg-white px-2" placeholder="45.5">
                                 </div>
                                 <div class="flex flex-col">
                                     <label class="text-[10px] sm:text-[11px] font-bold text-slate-600 mb-1" title="Lari Bolak-balik 2x Pitch">Run 2 (Detik)</label>
-                                    <input type="number" step="0.01" id="runtwo_awal" required class="vintage-input bg-white px-2" placeholder="6.50">
+                                    <input type="number" step="0.01" id="runtwo_awal" class="vintage-input bg-white px-2" placeholder="6.50">
                                 </div>
                                 <div class="flex flex-col">
                                     <label class="text-[10px] sm:text-[11px] font-bold text-slate-600 mb-1">Sprint 30m (Dtk)</label>
-                                    <input type="number" step="0.01" id="sprint_awal" required class="vintage-input bg-white px-2" placeholder="4.20">
+                                    <input type="number" step="0.01" id="sprint_awal" class="vintage-input bg-white px-2" placeholder="4.20">
                                 </div>
                             </div>
                         </div>
@@ -367,11 +372,11 @@
                                 <div class="grid grid-cols-2 gap-4 pb-3 border-b border-slate-100">
                                     <div class="flex flex-col">
                                         <div class="flex justify-between mb-1"><label class="text-[11px] font-bold text-slate-600">Batting: Runs</label><span id="disp_sr_awal" class="text-[11px] font-bold text-brand-600">SR 0.0</span></div>
-                                        <input type="number" id="runs_awal" oninput="hitungSkill('awal')" required class="vintage-input text-sm" placeholder="Total dari 24 Bola">
+                                        <input type="number" id="runs_awal" oninput="hitungSkill('awal')" class="vintage-input text-sm" placeholder="Total dari 24 Bola">
                                     </div>
                                     <div class="flex flex-col">
                                         <div class="flex justify-between mb-1"><label class="text-[11px] font-bold text-slate-600">Control Shots</label><span id="disp_cp_awal" class="text-[11px] font-bold text-brand-600">0%</span></div>
-                                        <input type="number" id="control_awal" oninput="hitungSkill('awal')" required class="vintage-input text-sm" placeholder="Akurat dari 24 Bola">
+                                        <input type="number" id="control_awal" oninput="hitungSkill('awal')" class="vintage-input text-sm" placeholder="Akurat dari 24 Bola">
                                     </div>
                                 </div>
                                 
@@ -381,18 +386,18 @@
                                         <label class="text-[11px] font-bold text-slate-600">Bowling: Good Length Hits (Maks 24)</label>
                                         <span id="disp_akurasi_awal" class="text-[11px] font-bold text-brand-600">0%</span>
                                     </div>
-                                    <input type="number" id="akurat_awal" oninput="hitungSkill('awal')" required class="vintage-input text-sm" placeholder="Lemparan target akurat...">
+                                    <input type="number" id="akurat_awal" oninput="hitungSkill('awal')" class="vintage-input text-sm" placeholder="Lemparan target akurat...">
                                 </div>
 
                                 <!-- Fielding -->
                                 <div class="grid grid-cols-2 gap-4 pb-3 border-b border-slate-100">
                                     <div class="flex flex-col">
                                         <div class="flex justify-between mb-1"><label class="text-[11px] font-bold text-slate-600">Catching (Maks 20)</label><span id="disp_tangkap_awal" class="text-[11px] font-bold text-slate-500">0%</span></div>
-                                        <input type="number" id="tangkap_awal" oninput="hitungSkill('awal')" required class="vintage-input text-sm" placeholder="Sukses Tangkap">
+                                        <input type="number" id="tangkap_awal" oninput="hitungSkill('awal')" class="vintage-input text-sm" placeholder="Sukses Tangkap">
                                     </div>
                                     <div class="flex flex-col">
                                         <div class="flex justify-between mb-1"><label class="text-[11px] font-bold text-slate-600">Stops (Maks 20)</label><span id="disp_hadang_awal" class="text-[11px] font-bold text-slate-500">0%</span></div>
-                                        <input type="number" id="hadang_awal" oninput="hitungSkill('awal')" required class="vintage-input text-sm" placeholder="Clean Stops">
+                                        <input type="number" id="hadang_awal" oninput="hitungSkill('awal')" class="vintage-input text-sm" placeholder="Clean Stops">
                                     </div>
                                 </div>
 
@@ -503,7 +508,7 @@
                 </div>
 
                 <div class="mt-8 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <p class="text-xs text-slate-400 font-medium">🛡️ Data dilengkapi dengan sistem Sinkronisasi Anti-Konflik.</p>
+                    <p class="text-xs text-slate-400 font-medium">🛡️ Penggabungan Cerdas: Anda bisa mengisi Tes Awal dulu, lalu Tes Akhir di lain hari.</p>
                     <button type="submit" id="btn-submit-performa" class="vintage-btn px-8 py-3 bg-slate-900 text-white border-transparent hover:bg-slate-800 shadow-md w-full sm:w-auto text-sm">Simpan Rekam Performa</button>
                 </div>
             </form>
@@ -675,7 +680,6 @@
         function getValSafe(id) { const el = document.getElementById(id); return el ? el.value : ''; }
         function setValSafe(id, val) { const el = document.getElementById(id); if (el) el.value = val; }
 
-        // PERBAIKAN: Gunakan Endpoint lh3 yang lebih agresif & bebas blokir CORB/CORS di tag img
         function dapatkanUrlFotoValid(urlAsli) {
             if (!urlAsli) return '';
             let url = urlAsli.trim();
@@ -771,12 +775,12 @@
                     if (data.status === "sukses") {
                         const localCount = dbAtlet.length + dbPerforma.length;
                         
-                        // Menghitung id unik dari penggabungan 2 sheet di backend
-                        const perfAwal = data.performaAwal || [];
-                        const perfAkhir = data.performaAkhir || [];
-                        const allPerfIds = new Set([...perfAwal.map(p=>p.idAtlet), ...perfAkhir.map(p=>p.idAtlet)]);
-
-                        const cloudCount = (data.atlet ? data.atlet.length : 0) + allPerfIds.size;
+                        // Cek hitungan data dari cloud yang lebih fleksibel
+                        const cloudAtletCount = data.atlet ? data.atlet.length : 0;
+                        const cloudPerformaCount = data.performa ? data.performa.length : 
+                            new Set([...(data.performaAwal||[]).map(p=>p.idAtlet), ...(data.performaAkhir||[]).map(p=>p.idAtlet)]).size;
+                            
+                        const cloudCount = cloudAtletCount + cloudPerformaCount;
 
                         if (localCount === cloudCount) {
                             dot.className = "w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm";
@@ -835,7 +839,7 @@
             reader.readAsDataURL(file);
         }
 
-        // --- SIMPAN ATLET KE SHEETS & LOKAL ---
+        // --- SIMPAN ATLET ---
         function simpanAtlet(e) {
             e.preventDefault();
             const btn = document.getElementById('btn-submit-atlet');
@@ -858,7 +862,6 @@
                 berat: getValSafe('berat'),
                 spesialisasi: getValSafe('spesialisasi'),
                 tangan: getValSafe('tangan'),
-                // PERBAIKAN 3: Timestamp untuk resolusi konflik
                 last_updated: Date.now()
             };
 
@@ -913,6 +916,7 @@
                 selekta.appendChild(opsi);
             });
             document.getElementById('form-performa').reset();
+            document.getElementById('info-pengisian').classList.add('hidden');
             hitungSkill('awal'); hitungSkill('akhir');
         }
 
@@ -929,12 +933,10 @@
             let wkc = getVal('wk_col_' + prefix);
             let wks = getVal('wk_stump_' + prefix);
 
-            // Formula: (Val / 24) * 100 untuk Batting/Bowling
             setDisp('disp_sr_' + prefix, runs !== null ? 'SR ' + ((runs / 24) * 100).toFixed(1) : 'SR 0.0');
             setDisp('disp_cp_' + prefix, ctrl !== null ? ((ctrl / 24) * 100).toFixed(1) + '%' : '0%');
             setDisp('disp_akurasi_' + prefix, ak !== null ? ((ak / 24) * 100).toFixed(1) + '%' : '0%');
             
-            // Formula: (Val / 20) * 100 untuk Fielding/WK
             setDisp('disp_tangkap_' + prefix, tk !== null ? ((tk / 20) * 100).toFixed(1) + '%' : '0%');
             setDisp('disp_hadang_' + prefix, hd !== null ? ((hd / 20) * 100).toFixed(1) + '%' : '0%');
             
@@ -948,8 +950,11 @@
 
         function muatDataPerformaAtlet() {
             const idAtlet = document.getElementById('pilih-atlet').value;
+            const infoBox = document.getElementById('info-pengisian');
+            
             if(!idAtlet) {
                 document.getElementById('form-performa').reset();
+                infoBox.classList.add('hidden');
                 hitungSkill('awal'); hitungSkill('akhir');
                 return;
             }
@@ -957,7 +962,7 @@
             const p = dbPerforma.find(x => x.idAtlet === idAtlet);
             
             if(p) {
-                // PERBAIKAN 2: Fallback key data dari spreadsheet agar selalu match dengan Litbang Input
+                // Memuat nilai yang ada (Bisa jadi cuma Awal yang terisi)
                 setValSafe('tgltes_awal', p.tgltes_awal || p.tglTes || p.tgltesawal || '');
                 setValSafe('vo2_awal', p.vo2_awal || p.vo2 || p.vo2awal || '');
                 setValSafe('runtwo_awal', p.runtwo_awal || p.runtwoawal || '');
@@ -984,10 +989,18 @@
                 setValSafe('wk_stump_akhir', p.wk_stump_akhir || p.wkstumpakhir || '');
                 setValSafe('catatan_akhir', p.catatan_akhir || p.catatanakhir || '');
                 
+                // Tampilkan info visual jika data sudah pernah diisi
+                if(p.tgltes_awal || p.tglTes) {
+                    infoBox.classList.remove('hidden');
+                } else {
+                    infoBox.classList.add('hidden');
+                }
+
                 hitungSkill('awal'); hitungSkill('akhir');
             } else {
                 document.getElementById('form-performa').reset();
                 document.getElementById('pilih-atlet').value = idAtlet;
+                infoBox.classList.add('hidden');
                 hitungSkill('awal'); hitungSkill('akhir');
             }
         }
@@ -1001,9 +1014,16 @@
             const idAtletDipilih = document.getElementById('pilih-atlet').value;
             const atletTerpilih = dbAtlet.find(a => a.id === idAtletDipilih);
             
+            // Mengambil data lama (jika ada) untuk memastikan key yang belum terekam di form tidak hilang saat merge
+            const existingData = dbPerforma.find(x => x.idAtlet === idAtletDipilih) || {};
+            
+            // Membuat object baru dengan mengambil data dari form secara real-time.
+            // Karena muatDataPerformaAtlet sudah mengisi form dengan data lama,
+            // maka jika user hanya mengisi Tes Akhir, nilai Tes Awal di form akan ikut terkirim/ter-merge kembali dengan aman.
             const pBaru = {
+                ...existingData, 
                 idAtlet: idAtletDipilih,
-                nama: atletTerpilih ? atletTerpilih.nama : '', // Menambahkan nama atlet
+                nama: atletTerpilih ? atletTerpilih.nama : '', 
                 
                 tgltes_awal: getValSafe('tgltes_awal'), vo2_awal: getValSafe('vo2_awal'),
                 runtwo_awal: getValSafe('runtwo_awal'), sprint_awal: getValSafe('sprint_awal'),
@@ -1018,10 +1038,10 @@
                 akurat_akhir: getValSafe('akurat_akhir'), tangkap_akhir: getValSafe('tangkap_akhir'),
                 hadang_akhir: getValSafe('hadang_akhir'), wk_col_akhir: getValSafe('wk_col_akhir'),
                 wk_stump_akhir: getValSafe('wk_stump_akhir'), catatan_akhir: getValSafe('catatan_akhir'),
-                // PERBAIKAN 3: Timestamp anti-konflik
                 last_updated: Date.now()
             };
 
+            // Timpa lokal
             dbPerforma = dbPerforma.filter(x => x.idAtlet !== pBaru.idAtlet);
             dbPerforma.push(pBaru);
             localStorage.setItem('kriket_performa_dki_v2', JSON.stringify(dbPerforma));
@@ -1052,10 +1072,11 @@
         }
 
         function selesaiSimpanPerforma(btn) {
-            showToast('Evaluasi Tersimpan!', 'Data Performa berhasil disimpan ke database.');
+            showToast('Evaluasi Tersimpan!', 'Data Performa (Gabungan) berhasil disimpan ke database.');
             btn.innerText = "Simpan Rekam Performa";
             btn.disabled = false;
             document.getElementById('form-performa').reset();
+            document.getElementById('info-pengisian').classList.add('hidden');
             hitungSkill('awal'); hitungSkill('akhir');
             bukaTab('tab-dashboard');
         }
@@ -1090,11 +1111,14 @@
                     const performa = dbPerforma.find(p => p.idAtlet === atlet.id) || null;
                     let statusEval = `<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-slate-100 text-slate-600">Belum Ada Tes</span>`;
                     if (performa) {
-                        // Cek dengan keys dari Apps script juga untuk kepastian indikator
                         const isAwal = performa.tgltes_awal || performa.tgltesawal || performa.tglTes;
                         const isAkhir = performa.tgltes_akhir || performa.tgltesakhir;
-                        if (isAkhir && (performa.vo2_akhir || performa.vo2akhir)) statusEval = `<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-emerald-100 text-emerald-800 border border-emerald-200">Lengkap (Awal & Akhir)</span>`;
-                        else if (isAwal) statusEval = `<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-amber-100 text-amber-800 border border-amber-200">Hanya Tes Awal</span>`;
+                        if (isAkhir && (performa.vo2_akhir || performa.vo2akhir || performa.runs_akhir || performa.runsakhir)) {
+                            statusEval = `<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-emerald-100 text-emerald-800 border border-emerald-200">Lengkap (Awal & Akhir)</span>`;
+                        }
+                        else if (isAwal) {
+                            statusEval = `<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-amber-100 text-amber-800 border border-amber-200">Hanya Tes Awal</span>`;
+                        }
                     }
                     
                     const tr = document.createElement('tr');
@@ -1131,7 +1155,6 @@
         function getDominasi(performa) {
             if(!performa) return null;
             
-            // ICC Base 24 & 20 Calculations menggunakan fallback support keys
             const getSafe = (keyA, keyB) => performa[keyA] || performa[keyB];
 
             const rAkhir = getSafe('runs_akhir', 'runsakhir'); const rAwal = getSafe('runs_awal', 'runsawal');
@@ -1222,7 +1245,6 @@
                 }
             }
 
-            // Deteksi "Kondisi Kritis Pemain" (Alerta Otomatis)
             let alertMsg = null;
             if ((dom.cp >= 75 || dom.ba >= 60) && (vo2 < 46.0 || (run2 > 6.70 && run2 > 0))) {
                 alertMsg = "⚠️ Aset Berbakat - Butuh Gemblengan Fisik Ekstra sebelum Turnamen (Teknik terhambat limitasi Paru-paru/Akselerasi).";
@@ -1231,7 +1253,6 @@
             return { list: hasil, alert: alertMsg };
         }
 
-        // --- SISTEM MODAL PROFIL (PERBAIKAN FOTO TAMPIL) ---
         function bukaProfil(id) {
             atletAktifId = id; 
             const atlet = dbAtlet.find(a => a.id === id);
@@ -1247,17 +1268,14 @@
             const imgEl = document.getElementById('modal-foto');
             const noImgEl = document.getElementById('modal-no-foto');
             
-            // Bersihkan sisa tampilan sebelumnya
             imgEl.classList.add('hidden');
             imgEl.onload = null; imgEl.onerror = null; imgEl.src = ''; 
             
             noImgEl.classList.remove('hidden');
             noImgEl.innerText = "Memuat foto...";
 
-            // Menangkap foto dari berbagai kemungkinan nama kolom header di Spreadsheet
             const urlFotoBersih = dapatkanUrlFotoValid(atlet.foto || atlet.Foto || atlet.FOTO || atlet.url_foto);
 
-            // Logika render foto yang sangat agresif agar tidak nge-bug di hidden
             if (urlFotoBersih && urlFotoBersih.length > 10) { 
                 imgEl.src = urlFotoBersih;
                 imgEl.classList.remove('hidden'); 
@@ -1418,23 +1436,22 @@
             }
         }
         
-        // PERBAIKAN 3: Logika penggabungan data berbasis timestamp (Anti-Overwrite/Konflik)
         function mergeDataLocalAndCloud(localArr, cloudArr, idProperty) {
-            if (!cloudArr || !Array.isArray(cloudArr)) return localArr;
+            if (!cloudArr || !Array.isArray(cloudArr) || cloudArr.length === 0) return localArr;
+            
             let merged = [...localArr];
             
             cloudArr.forEach(cloudItem => {
                 const localIdx = merged.findIndex(item => item[idProperty] === cloudItem[idProperty]);
                 if (localIdx === -1) {
-                    // Data baru dari cloud, langsung tambahkan
                     merged.push(cloudItem);
                 } else {
-                    // Cek Timestamp (last_updated) jika ada konflik/update
                     const localTime = parseInt(merged[localIdx].last_updated) || 0;
                     const cloudTime = parseInt(cloudItem.last_updated) || 0;
                     
-                    // Timpa data lokal hanya jika data dari Cloud lebih baru atau sama
-                    if (cloudTime >= localTime) {
+                    // Prioritaskan Cloud jika data lokal tidak memiliki timestamp update,
+                    // atau jika timestamp cloud lebih baru/sama.
+                    if (cloudTime >= localTime || localTime === 0) {
                         merged[localIdx] = cloudItem;
                     }
                 }
@@ -1442,6 +1459,7 @@
             return merged;
         }
 
+        // PERBAIKAN: Menangani Tarik Data secara Dinamis dan Standard Sheet JSON Format
         function tarikDataDariCloud() {
             if (!GOOGLE_SHEETS_URL || !GOOGLE_SHEETS_URL.includes("script.google.com")) {
                 alert("URL Spreadsheet belum diatur dengan benar.");
@@ -1457,31 +1475,42 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === "sukses") {
-                        // Implementasi Merge Anti-Konflik untuk Data Atlet
-                        dbAtlet = mergeDataLocalAndCloud(dbAtlet, data.atlet, 'id');
+                        // 1. Tarik Data Atlet
+                        if (data.atlet && Array.isArray(data.atlet)) {
+                            dbAtlet = mergeDataLocalAndCloud(dbAtlet, data.atlet, 'id');
+                            localStorage.setItem('kriket_atlet_dki_v2', JSON.stringify(dbAtlet));
+                        }
                         
-                        // Menyatukan Performa Awal & Akhir dari Sheets untuk Data Lokal UI
-                        let combinedPerformaFromCloud = [];
-                        const perfAwal = data.performaAwal || [];
-                        const perfAkhir = data.performaAkhir || [];
-
-                        const allPerfIds = new Set([...perfAwal.map(p=>p.idAtlet), ...perfAkhir.map(p=>p.idAtlet)]);
-                        allPerfIds.forEach(id => {
-                            if (!id) return;
-                            let aw = perfAwal.find(p => p.idAtlet === id) || {};
-                            let ak = perfAkhir.find(p => p.idAtlet === id) || {};
-                            combinedPerformaFromCloud.push({ ...aw, ...ak, idAtlet: id });
-                        });
-
-                        dbPerforma = mergeDataLocalAndCloud(dbPerforma, combinedPerformaFromCloud, 'idAtlet');
+                        // 2. Tarik Data Performa
+                        let performaCloud = [];
                         
-                        localStorage.setItem('kriket_atlet_dki_v2', JSON.stringify(dbAtlet));
-                        localStorage.setItem('kriket_performa_dki_v2', JSON.stringify(dbPerforma));
+                        // Menyesuaikan jika format JSON Apps Script diset pada satu array `data.performa`
+                        if (data.performa && Array.isArray(data.performa)) {
+                            performaCloud = data.performa;
+                        } 
+                        // Menyesuaikan jika format JSON terpisah (seperti konsep sebelumnya)
+                        else if (data.performaAwal || data.performaAkhir) {
+                            const perfAwal = data.performaAwal || [];
+                            const perfAkhir = data.performaAkhir || [];
+                            const allPerfIds = new Set([...perfAwal.map(p=>p.idAtlet), ...perfAkhir.map(p=>p.idAtlet)]);
+                            
+                            allPerfIds.forEach(id => {
+                                if (!id) return;
+                                let aw = perfAwal.find(p => p.idAtlet === id) || {};
+                                let ak = perfAkhir.find(p => p.idAtlet === id) || {};
+                                performaCloud.push({ ...aw, ...ak, idAtlet: id });
+                            });
+                        }
+
+                        if (performaCloud.length > 0) {
+                            dbPerforma = mergeDataLocalAndCloud(dbPerforma, performaCloud, 'idAtlet');
+                            localStorage.setItem('kriket_performa_dki_v2', JSON.stringify(dbPerforma));
+                        }
                         
                         renderBukuBesar();
                         muatDaftarAtlet();
                         cekSinkronisasi(); 
-                        showToast('Sinkronisasi Sukses', `Update selesai. Data diselesaikan berdasarkan waktu simpan terakhir.`);
+                        showToast('Sinkronisasi Sukses', `Tarik data selesai.`);
                     } else {
                         showToast('Gagal Tarik Data', 'Gagal memproses respons dari server.', true);
                     }
@@ -1496,7 +1525,7 @@
                 });
         }
 
-        // --- SISTEM PEMBUATAN PDF (Update Rubrik ICC) ---
+        // --- SISTEM PEMBUATAN PDF ---
         function getTemplatePdf(atlet, performa, tipe = 'lengkap') {
             const getSafe = (keyA, keyB, keyC) => performa[keyA] || performa[keyB] || performa[keyC];
             
